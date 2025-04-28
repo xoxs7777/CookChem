@@ -1,0 +1,1117 @@
+=<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CookChem | The Science of Better Cooking</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Color Variables */
+        :root {
+            --primary: #e63946; /* Vibrant red for chemistry feel */
+            --secondary: #457b9d; /* Science blue */
+            --accent: #a8dadc; /* Light teal */
+            --dark: #1d3557; /* Navy for contrast */
+            --light: #f1faee; /* Off-white background */
+            --text: #333;
+            --text-light: #555;
+        }
+        
+        /* Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light);
+            color: var(--text);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header & Navigation */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--primary);
+        }
+        
+        .logo i {
+            margin-right: 10px;
+            color: var(--secondary);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 30px;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+        
+        .nav-links .active {
+            color: var(--primary);
+            border-bottom: 2px solid var(--primary);
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--primary);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: var(--dark);
+            transform: translateY(-2px);
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(255,255,255,0.9), rgba(255,255,255,0.9)), 
+                        url('https://images.unsplash.com/photo-1606787366850-de6330128bfc?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            padding: 100px 0;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: var(--dark);
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            color: var(--text-light);
+        }
+        
+        .hero-btns {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        
+        /* Features Section */
+        .features {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-title h2 {
+            font-size: 2.2rem;
+            color: var(--dark);
+            margin-bottom: 15px;
+        }
+        
+        .section-title p {
+            color: var(--text-light);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .feature-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+        
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+        
+        /* Quick Tips Section */
+        .quick-tips {
+            background-color: var(--accent);
+            padding: 80px 0;
+        }
+        
+        .tips-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .tip-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .tip-card h3 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+        
+        .tip-card .science {
+            background-color: var(--light);
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 15px;
+            font-style: italic;
+            border-left: 3px solid var(--secondary);
+        }
+        
+        .refresh-tips {
+            text-align: center;
+            margin-top: 30px;
+        }
+        
+        /* Ingredient Analyzer Section */
+        .ingredient-analyzer {
+            padding: 80px 0;
+            background-color: white;
+        }
+        
+        .analyzer-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .upload-area {
+            border: 2px dashed var(--secondary);
+            border-radius: 10px;
+            padding: 40px;
+            text-align: center;
+            width: 100%;
+            max-width: 600px;
+            margin-bottom: 30px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .upload-area:hover {
+            border-color: var(--primary);
+            background-color: rgba(168, 218, 220, 0.1);
+        }
+        
+        .upload-area i {
+            font-size: 3rem;
+            color: var(--secondary);
+            margin-bottom: 15px;
+        }
+        
+        #image-preview {
+            max-width: 100%;
+            max-height: 300px;
+            margin-bottom: 20px;
+            display: none;
+        }
+        
+        .substitutes-results {
+            width: 100%;
+            max-width: 800px;
+            background-color: var(--light);
+            padding: 20px;
+            border-radius: 10px;
+            display: none;
+        }
+        
+        .substitute-item {
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .substitute-item:last-child {
+            border-bottom: none;
+        }
+        
+        /* Cooking Methods Section */
+        .cooking-methods {
+            padding: 80px 0;
+        }
+        
+        .method-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .method-tab {
+            padding: 10px 20px;
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .method-tab:hover, .method-tab.active {
+            background-color: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+        
+        .method-content {
+            display: none;
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .method-content.active {
+            display: block;
+        }
+        
+        /* Reaction of the Day */
+        .reaction-day {
+            background-color: var(--dark);
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+        }
+        
+        .reaction-day h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+        
+        .reaction-content {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: rgba(255,255,255,0.1);
+            padding: 30px;
+            border-radius: 10px;
+        }
+        
+        /* Fix My Dish Section */
+        .fix-dish {
+            padding: 80px 0;
+            background-color: var(--light);
+        }
+        
+        .fix-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        
+        .form-group input, 
+        .form-group select, 
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+        
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 50px 0 20px;
+            text-align: center;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            margin-bottom: 30px;
+        }
+        
+        .footer-links li {
+            margin: 0 15px;
+        }
+        
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+        
+        .social-links {
+            margin-bottom: 30px;
+        }
+        
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            margin: 0 10px;
+            transition: color 0.3s;
+        }
+        
+        .social-links a:hover {
+            color: var(--accent);
+        }
+        
+        .copyright {
+            color: rgba(255,255,255,0.7);
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero-btns {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .upload-area {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    <i class="fas fa-flask"></i>
+                    CookChem
+                </div>
+                <ul class="nav-links">
+                    <li><a href="#quick-tips" class="active">Quick Tips</a></li>
+                    <li><a href="#ingredient-analyzer">Ingredient Analyzer</a></li>
+                    <li><a href="#cooking-methods">Cooking Methods</a></li>
+                    <li><a href="#reaction-day">Reaction of the Day</a></li>
+                    <li><a href="#fix-dish">Fix My Dish</a></li>
+                    <li><a href="#" class="btn btn-outline">Sign Up</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>The Science of Better Cooking</h1>
+            <p>Discover how basic chemistry can transform your everyday cooking with simple, practical tips that make your food tastier, more consistent, and more impressive!</p>
+            <div class="hero-btns">
+                <a href="#quick-tips" class="btn">Explore Chemistry Hacks</a>
+                <a href="#fix-dish" class="btn btn-outline">Fix My Cooking Problem</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <div class="section-title">
+                <h2>Why Cook With Chemistry?</h2>
+                <p>Understanding the science behind cooking helps you become more adaptable, creative, and consistent in the kitchen.</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <h3>Science-Based Tips</h3>
+                    <p>Learn why techniques work, not just how to do them. Understand the chemical reactions that create flavor and texture.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-utensils"></i>
+                    </div>
+                    <h3>Immediate Improvements</h3>
+                    <p>Small changes based on chemistry can make big differences in your cooking results, often with no extra effort.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-question"></i>
+                    </div>
+                    <h3>Problem Solving</h3>
+                    <p>When things go wrong, understand why and how to fix it based on the underlying chemistry of your ingredients.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick Tips Section -->
+    <section class="quick-tips" id="quick-tips">
+        <div class="container">
+            <div class="section-title">
+                <h2>Quick Chemistry Hacks</h2>
+                <p>Simple changes that make a big difference in your cooking</p>
+            </div>
+            <div class="tips-container" id="tips-container">
+                <!-- Tips will be loaded here by JavaScript -->
+            </div>
+            <div class="refresh-tips">
+                <button class="btn btn-outline" id="refresh-tips">Show Different Tips</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ingredient Analyzer Section -->
+    <section class="ingredient-analyzer" id="ingredient-analyzer">
+        <div class="container">
+            <div class="section-title">
+                <h2>Ingredient Analyzer</h2>
+                <p>Upload a photo of your ingredients and get science-based substitutes</p>
+            </div>
+            <div class="analyzer-container">
+                <div class="upload-area" id="upload-area">
+                    <i class="fas fa-cloud-upload-alt"></i>
+                    <h3>Upload Photo of Ingredients</h3>
+                    <p>Drag & drop an image or click to browse</p>
+                    <input type="file" id="image-upload" accept="image/*" style="display: none;">
+                    <img id="image-preview" alt="Preview of uploaded image">
+                </div>
+                <button class="btn" id="analyze-btn" style="display: none;">Analyze Ingredients</button>
+                <div class="substitutes-results" id="substitutes-results">
+                    <h3>Suggested Substitutes</h3>
+                    <div id="substitutes-list"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cooking Methods Section -->
+    <section class="cooking-methods" id="cooking-methods">
+        <div class="container">
+            <div class="section-title">
+                <h2>What Are You Cooking?</h2>
+                <p>Get chemistry tips tailored to your cooking method</p>
+            </div>
+            <div class="method-tabs">
+                <div class="method-tab active" data-method="baking">Baking</div>
+                <div class="method-tab" data-method="grilling">Grilling</div>
+                <div class="method-tab" data-method="boiling">Boiling</div>
+                <div class="method-tab" data-method="roasting">Roasting</div>
+                <div class="method-tab" data-method="sautéing">Sautéing</div>
+            </div>
+            <div class="method-content active" id="baking">
+                <h3>Baking Chemistry Tips</h3>
+                <ul>
+                    <li><strong>Measure flour properly:</strong> Spoon and level to avoid dense baked goods. Too much flour develops excess gluten.</li>
+                    <li><strong>Butter temperature matters:</strong> Room temp (65°F) creams best with sugar for light texture. Melted butter makes denser results.</li>
+                    <li><strong>Baking soda vs powder:</strong> Soda needs acid to activate. Powder contains its own acid. Using wrong one affects rise.</li>
+                    <li><strong>Chill cookie dough:</strong> Solidifies fat for slower spread and better texture as the leavening activates gradually.</li>
+                </ul>
+            </div>
+            <div class="method-content" id="grilling">
+                <h3>Grilling Chemistry Tips</h3>
+                <ul>
+                    <li><strong>Pat meat dry:</strong> Surface moisture cools the meat and prevents proper Maillard browning reactions.</li>
+                    <li><strong>Don't press burgers:</strong> Squeezing out juices loses flavor and makes meat dry by breaking down protein structures.</li>
+                    <li><strong>Use sugar carefully:</strong> Sugar caramelizes quickly - brush sugary sauces on late to prevent burning.</li>
+                    <li><strong>Let meat rest:</strong> Allows juices to redistribute as proteins relax after cooking, preventing dry results.</li>
+                </ul>
+            </div>
+            <div class="method-content" id="boiling">
+                <h3>Boiling Chemistry Tips</h3>
+                <ul>
+                    <li><strong>Salt the water:</strong> Raises boiling point slightly and seasons food from within through osmosis.</li>
+                    <li><strong>Acid helps veggies:</strong> A splash of vinegar or lemon juice helps maintain bright colors in green vegetables.</li>
+                    <li><strong>Starchy water for pasta:</strong> The cloudy water helps sauces cling better to pasta through starch interactions.</li>
+                    <li><strong>Cold water starts:</strong> For potatoes and eggs, starting cold allows even cooking from center to surface.</li>
+                </ul>
+            </div>
+            <div class="method-content" id="roasting">
+                <h3>Roasting Chemistry Tips</h3>
+                <ul>
+                    <li><strong>High heat first:</strong> Starts browning reactions, then lower heat cooks through without burning.</li>
+                    <li><strong>Don't crowd the pan:</strong> Steam from crowded food prevents proper browning reactions.</li>
+                    <li><strong>Fat conducts heat:</strong> Basting helps transfer heat evenly and promotes browning reactions.</li>
+                    <li><strong>Rest meat:</strong> Allows proteins to reabsorb juices that would otherwise run out when cut.</li>
+                </ul>
+            </div>
+            <div class="method-content" id="sautéing">
+                <h3>Sautéing Chemistry Tips</h3>
+                <ul>
+                    <li><strong>Pan temperature:</strong> Oil should shimmer but not smoke. Too cool = steaming, too hot = burning.</li>
+                    <li><strong>Don't stir too much:</strong> Allows proper browning reactions to develop flavor compounds.</li>
+                    <li><strong>Deglaze properly:</strong> Use wine, stock or water to dissolve flavorful fond (caramelized bits).</li>
+                    <li><strong>Add garlic late:</strong> Burns easily - add in last 30 seconds to preserve flavor compounds.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reaction of the Day -->
+    <section class="reaction-day" id="reaction-day">
+        <div class="container">
+            <h2>Reaction of the Day</h2>
+            <div class="reaction-content">
+                <h3>The Maillard Reaction</h3>
+                <p>The Maillard reaction is a chemical reaction between amino acids and reducing sugars that gives browned food its distinctive flavor. It's responsible for the flavors in seared meats, fried onions, roasted coffee, and toasted bread.</p>
+                <p><strong>How to maximize it:</strong> Use dry surfaces, adequate heat (285°F+), and slightly alkaline conditions (a pinch of baking soda can help). Avoid overcrowding the pan which creates steam and lowers temperature.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Fix My Dish Section -->
+    <section class="fix-dish" id="fix-dish">
+        <div class="container">
+            <div class="section-title">
+                <h2>Fix My Dish</h2>
+                <p>Describe your cooking problem and get chemistry-based solutions</p>
+            </div>
+            <div class="fix-form">
+                <div class="form-group">
+                    <label for="problem">What's going wrong with your dish?</label>
+                    <select id="problem">
+                        <option value="">Select a common problem...</option>
+                        <option value="dry-meat">My meat is dry/tough</option>
+			<option value="too-salty">My food is too salty</option>
+			<option value="too-spicy">My food is too spicy</option>
+			<option value="too-sweet">My food is too sweet</option>
+			<option value="burnt-garlic">My garlic keeps burning</option>
+			<option value="watery-sauce">My sauce is too watery</option>
+			<option value="tough-greens">My green vegetables are tough/stringy</option>
+                        <option value="soggy-veg">My vegetables are soggy</option>
+                        <option value="flat-baked">My baked goods are flat</option>
+                        <option value="sauce-break">My sauce broke/separated</option>
+                        <option value="no-browning">My food isn't browning</option>
+                        <option value="dough-sticky">My dough is too sticky</option>
+                        <option value="souffle-fall">My soufflé collapsed</option>
+                        <option value="crystal-sugar">I have sugar crystallization</option>
+                        <option value="greasy-food">My food is too greasy</option>
+                        <option value="overcooked">I keep overcooking food</option>
+                        <option value="underseasoned">My food is underseasoned</option>
+			<option value="tough-adobo">My adobo is tough/dry</option>
+			<option value="bland-pancit">My pancit lacks flavor</option>
+			<option value="lumpia-issues">My lumpia wrappers tear/are soggy</option>
+			<option value="lechon-not-crispy">My lechon kawali skin isn't crispy</option>
+			<option value="sinigang-balance">My sinigang is too sour/not sour enough</option>
+			<option value="bitter-ampalaya">My ampalaya is too bitter</option>
+			<option value="gummy-kakanin">My kakanin/rice cakes are gummy</option>
+			<option value="oily-karekare">My kare-kare is too oily</option>
+			<option value="adobo-balance">My adobo is too salty/sour</option>
+			<option value="kare-kare">My kare-kare sauce is separating</option>
+			<option value="soggy-lumpia">My lumpia isn't crispy</option>
+			<option value="rice-texture">My rice is sticky/undercooked</option>
+			<option value="lechon-skin">My lechon kawali skin isn't crispy</option>
+			<option value="pancit-clumps">My pancit is clumping together</option>
+			<option value="leche-flan">My leche flan has bubbles/isn't smooth</option>
+			<option value="sinigang-sour">My sinigang isn't sour enough</option>
+			<option value="flat-bibingka">My bibingka isn't rising properly</option>
+			<option value="runny-ube">My ube halaya is too runny</option>
+                        <option value="other">Something else</option>
+                    </select>
+                </div>
+                <div class="form-group" id="custom-problem-group" style="display: none;">
+                    <label for="custom-problem">Describe your problem in detail:</label>
+                    <textarea id="custom-problem"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="ingredients">What ingredients are you using?</label>
+                    <input type="text" id="ingredients" placeholder="List main ingredients...">
+                </div>
+                <button type="submit" class="btn" id="fix-btn">Get Chemistry Fix</button>
+                <div id="solution" style="margin-top: 20px; display: none;">
+                    <h3>Chemistry-Based Solution:</h3>
+                    <p id="solution-text"></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="logo" style="justify-content: center; margin-bottom: 20px;">
+                <i class="fas fa-flask"></i>
+                CookChem
+            </div>
+            <ul class="footer-links">
+                <li><a href="#">About</a></li>
+                <li><a href="#">Science Resources</a></li>
+                <li><a href="#">Cooking Experiments</a></li>
+                <li><a href="#">Blog</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
+                <a href="#"><i class="fab fa-pinterest"></i></a>
+            </div>
+            <p class="copyright">© 2025 CookChem | The Science of Better Cooking</p>
+        </div>
+    </footer>
+
+  <script>
+    // Cooking Methods Tabs
+    const methodTabs = document.querySelectorAll('.method-tab');
+    methodTabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            // Remove active class from all tabs and contents
+            methodTabs.forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.method-content').forEach(c => c.classList.remove('active'));
+            
+            // Add active class to clicked tab
+            tab.classList.add('active');
+            
+            // Show corresponding content
+            const method = tab.getAttribute('data-method');
+            document.getElementById(method).classList.add('active');
+        });
+    });
+    
+    // Quick Tips - Initial Load and Refresh
+    const tipsContainer = document.getElementById('tips-container');
+    const refreshTipsBtn = document.getElementById('refresh-tips');
+    
+    const allTips = [
+        {
+            title: "Salt Vegetables Early",
+            content: "Salting vegetables 15-30 minutes before cooking draws out excess water through osmosis, resulting in better browning and concentrated flavor when you cook them.",
+            science: "Salt creates a hypertonic environment that causes water to move out of vegetable cells through osmosis."
+        },
+        {
+            title: "Use Baking Soda for Browning",
+            content: "A tiny pinch of baking soda (1/8 tsp per pound) raises the pH of meat surfaces, accelerating the Maillard reaction for better browning at lower temperatures.",
+            science: "Maillard reaction (browning) occurs faster in alkaline conditions, and baking soda raises pH without adding sodium."
+        },
+        {
+            title: "Add Acid to Tenderize",
+            content: "Marinate tough cuts of meat with acidic ingredients like vinegar, lemon juice, or yogurt to help break down tough muscle fibers.",
+            science: "Acids denature proteins, unwinding their tight structures and making meat more tender."
+        },
+        {
+            title: "Blanch Before Freezing",
+            content: "Briefly boiling vegetables before freezing preserves texture, color and nutrients by deactivating enzymes that cause deterioration.",
+            science: "Heat denatures enzymes that would otherwise break down cell structure during frozen storage."
+        },
+        {
+            title: "Use Cold Water for Crisper Fries",
+            content: "Soaking cut potatoes in cold water before frying removes surface starch for crispier results and prevents sticking.",
+            science: "Cold water draws out starch molecules through osmosis, reducing gelatinization during frying."
+        },
+        {
+            title: "Add Fat to Prevent Foaming",
+            content: "A small amount of butter or oil added to boiling liquids prevents excessive foaming and boil-overs.",
+            science: "Fat molecules disrupt the surface tension of water, preventing stable foam bubbles from forming."
+        },
+        {
+            title: "Reverse Sear for Steaks",
+            content: "Cook steaks at low temp first, then sear at the end for perfect doneness edge-to-edge with great crust.",
+            science: "Low heat evenly distributes heat through conduction before high heat creates Maillard reactions."
+        },
+        {
+            title: "Use Vodka in Pie Crust",
+            content: "Replace some water with vodka in pie dough for flakier results that are easier to work with.",
+            science: "Vodka's alcohol inhibits gluten formation while evaporating completely during baking."
+        },
+        {
+            title: "Cook Beans with Baking Soda",
+            content: "A pinch of baking soda in cooking water helps beans soften faster and become creamier.",
+            science: "Alkaline conditions help break down pectin in bean cell walls more quickly."
+        },
+        {
+            title: "Freeze Cheese Before Grating",
+            content: "Freeze hard cheeses for 15 minutes before grating to prevent clumping and get perfect shreds.",
+            science: "Cold temperature solidifies milk fats that would otherwise smear at room temp."
+        }
+    ];
+    
+    function displayRandomTips() {
+        // Clear current tips
+        tipsContainer.innerHTML = '';
+        
+        // Shuffle array and pick first 3
+        const shuffled = [...allTips].sort(() => 0.5 - Math.random());
+        const selectedTips = shuffled.slice(0, 3);
+        
+        // Display the selected tips
+        selectedTips.forEach(tip => {
+            const tipCard = document.createElement('div');
+            tipCard.className = 'tip-card';
+            tipCard.innerHTML = `
+                <h3>${tip.title}</h3>
+                <p>${tip.content}</p>
+                <div class="science">
+                    <strong>The Science:</strong> ${tip.science}
+                </div>
+            `;
+            tipsContainer.appendChild(tipCard);
+        });
+    }
+    
+    // Initial load
+    displayRandomTips();
+    
+    // Refresh button
+    refreshTipsBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        displayRandomTips();
+    });
+    
+    // Ingredient Analyzer
+    const uploadArea = document.getElementById('upload-area');
+    const imageUpload = document.getElementById('image-upload');
+    const imagePreview = document.getElementById('image-preview');
+    const analyzeBtn = document.getElementById('analyze-btn');
+    const substitutesResults = document.getElementById('substitutes-results');
+    const substitutesList = document.getElementById('substitutes-list');
+    
+    uploadArea.addEventListener('click', () => {
+        imageUpload.click();
+    });
+    
+    imageUpload.addEventListener('change', (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = (event) => {
+                imagePreview.src = event.target.result;
+                imagePreview.style.display = 'block';
+                analyzeBtn.style.display = 'inline-block';
+                uploadArea.style.borderColor = 'var(--primary)';
+            };
+            reader.readAsDataURL(file);
+        }
+    });
+    
+    // Drag and drop functionality
+    uploadArea.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        uploadArea.style.backgroundColor = 'rgba(168, 218, 220, 0.2)';
+    });
+    
+    uploadArea.addEventListener('dragleave', () => {
+        uploadArea.style.backgroundColor = '';
+    });
+    
+    uploadArea.addEventListener('drop', (e) => {
+        e.preventDefault();
+        uploadArea.style.backgroundColor = '';
+        
+        const file = e.dataTransfer.files[0];
+        if (file && file.type.match('image.*')) {
+            imageUpload.files = e.dataTransfer.files;
+            const event = new Event('change');
+            imageUpload.dispatchEvent(event);
+        }
+    });
+    
+    analyzeBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        // In a real app, this would connect to an image recognition API
+        // For demo, we'll use mock data
+        analyzeBtn.textContent = 'Analyzing...';
+        
+        setTimeout(() => {
+            // Mock analysis results
+            const mockIngredients = [
+                { 
+                    name: 'All-Purpose Flour', 
+                    substitutes: [
+                        'Cake flour (for lighter texture) - use 1 cup + 2 tbsp cake flour per 1 cup AP flour',
+                        'Bread flour (for more gluten) - use 1:1 but expect chewier results',
+                        'Gluten-free flour blend (for GF option) - add 1/4 tsp xanthan gum per cup'
+                    ],
+                    science: 'Different flours have varying protein contents that affect gluten formation.'
+                },
+                { 
+                    name: 'Butter', 
+                    substitutes: [
+                        'Coconut oil (for dairy-free) - use 1:1 but may impart slight coconut flavor',
+                        'Vegetable shortening (for flakier pastries) - use 1:1 but lacks flavor',
+                        'Greek yogurt (for lower fat) - replace half the butter with yogurt'
+                    ],
+                    science: 'Substitutes must match butter\'s fat content and melting properties.'
+                },
+                { 
+                    name: 'Eggs', 
+                    substitutes: [
+                        'Flax eggs (1 tbsp ground flax + 3 tbsp water per egg) - best for binding',
+                        'Applesauce (1/4 cup per egg) - adds moisture but less structure',
+                        'Commercial egg replacer - follow package instructions'
+                    ],
+                    science: 'Eggs provide structure, leavening, and moisture - substitutes must match needed function.'
+                }
+            ];
+            
+            substitutesList.innerHTML = '';
+            
+            mockIngredients.forEach(ingredient => {
+                const item = document.createElement('div');
+                item.className = 'substitute-item';
+                item.innerHTML = `
+                    <h4>${ingredient.name}</h4>
+                    <p><strong>Best substitutes:</strong></p>
+                    <ul>
+                        ${ingredient.substitutes.map(sub => `<li>${sub}</li>`).join('')}
+                    </ul>
+                    <p class="science"><strong>The Science:</strong> ${ingredient.science}</p>
+                `;
+                substitutesList.appendChild(item);
+            });
+            
+            substitutesResults.style.display = 'block';
+            analyzeBtn.textContent = 'Analyze Ingredients';
+            
+            // Scroll to results
+            substitutesResults.scrollIntoView({ behavior: 'smooth' });
+        }, 1500);
+    });
+    
+    // Fix My Dish Form
+    const problemSelect = document.getElementById('problem');
+    const customProblemGroup = document.getElementById('custom-problem-group');
+    const solutionDiv = document.getElementById('solution');
+    const solutionText = document.getElementById('solution-text');
+    const fixBtn = document.getElementById('fix-btn');
+    
+    problemSelect.addEventListener('change', (e) => {
+        if (e.target.value === 'other') {
+            customProblemGroup.style.display = 'block';
+        } else {
+            customProblemGroup.style.display = 'none';
+        }
+    });
+    
+    fixBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        const problem = problemSelect.value;
+        let solution = '';
+        
+        switch(problem) {
+            case 'dry-meat':
+                solution = 'Your meat is likely overcooked or didn\'t retain enough moisture. Try these chemistry-based fixes:<br><br>1. <strong>Brine your meat</strong> before cooking (1 tbsp salt per cup water, 1 hour per inch thickness) - this alters protein structure to hold more water.<br>2. <strong>Cook to proper internal temp</strong> (145°F for beef, 165°F for poultry) - proteins tighten and squeeze out juice when overcooked.<br>3. <strong>Let it rest</strong> after cooking - allows proteins to relax and reabsorb some juices.';
+                break;
+            case 'too-salty':
+                solution = 'Your food is too salty. Chemistry solutions:<br><br>1. <strong>Add starch:</strong> Potatoes, rice, or bread absorb salt molecules through their porous structure.<br>2. <strong>Dilute with liquid:</strong> Add unsalted stock/water to distribute sodium ions over a larger volume.<br>3. <strong>Balance with acid:</strong> Lemon juice or vinegar creates flavor contrast that masks salt perception.<br>4. <strong>Add sweetness:</strong> Sugar competes with salt on taste receptors, reducing perceived saltiness.';
+                break;
+            case 'too-spicy':
+                solution = 'Your food is too spicy. Chemistry solutions:<br><br>1. <strong>Add dairy:</strong> Casein proteins in milk, yogurt, or cream bind to capsaicin (spicy compound).<br>2. <strong>Add fat:</strong> Capsaicin is fat-soluble, so oil helps dissolve and distribute it.<br>3. <strong>Add sweetness:</strong> Sugar molecules compete with capsaicin for taste receptor attention.<br>4. <strong>Add starch:</strong> Rice or potatoes absorb capsaicin compounds while providing bland contrast.';
+                break;
+            case 'too-sweet':
+                solution = 'Your food is too sweet. Chemistry solutions:<br><br>1. <strong>Add acid:</strong> Vinegar or citrus juice counters sweetness by activating sour receptors.<br>2. <strong>Add salt:</strong> Small amount enhances flavor complexity while reducing sweet perception.<br>3. <strong>Add bitterness:</strong> Coffee, cocoa, or bitter greens create taste balance.<br>4. <strong>Balance with umami:</strong> Soy sauce, mushrooms, or fermented ingredients add savory depth.';
+                break;
+            case 'burnt-garlic':
+                solution = 'Your garlic keeps burning. Chemistry solutions:<br><br>1. <strong>Add garlic later:</strong> Sulfur compounds in garlic burn at relatively low temperatures (around 325°F).<br>2. <strong>Control cooking temp:</strong> Use medium-low heat when cooking garlic to prevent rapid browning.<br>3. <strong>Add with liquids:</strong> Introducing garlic with some liquid prevents it from direct heat contact.<br>4. <strong>Use larger pieces:</strong> Minced garlic has more surface area and burns faster than sliced garlic.';
+                break;
+            case 'watery-sauce':
+                solution = 'Your sauce is too watery. Chemistry solutions:<br><br>1. <strong>Reduce by simmering:</strong> Evaporation concentrates flavors and thickens through water loss.<br>2. <strong>Add starch thickener:</strong> Cornstarch, flour, or arrowroot form gel networks when heated with liquid.<br>3. <strong>Add egg yolk:</strong> Lecithin in yolks is a natural emulsifier that thickens and stabilizes.<br>4. <strong>Add pureed vegetables:</strong> Their natural pectins and fibers add body and thickness.';
+                break;
+            case 'tough-greens':
+                solution = 'Your green vegetables are tough or stringy. Chemistry solutions:<br><br>1. <strong>Blanch briefly:</strong> Quick high-heat cooking softens cell walls without fully breaking down structure.<br>2. <strong>Massage leafy greens:</strong> Physical pressure breaks down tough cell structures for tender texture.<br>3. <strong>Add salt early:</strong> Draws out moisture through osmosis, softening fibrous structures.<br>4. <strong>Add acid:</strong> Vinegar or citrus helps break down tough plant fibers by weakening cellular bonds.';
+                break;
+            case 'soggy-veg':
+                solution = 'Your vegetables are releasing too much water. Chemistry solutions:<br><br>1. <strong>Salt vegetables 15-30 min before cooking</strong> to draw out excess moisture through osmosis, then pat dry.<br>2. <strong>Use higher heat</strong> to quickly evaporate surface moisture and promote browning.<br>3. <strong>Don\'t overcrowd the pan</strong> - steam from too much food lowers temperature and causes sogginess.';
+                break;
+            case 'flat-baked':
+                solution = 'Your baked goods lack proper rise. Chemical causes and fixes:<br><br>1. <strong>Check your leavener</strong> - baking soda needs acid to activate, baking powder contains its own acid. Old products lose potency.<br>2. <strong>Measure flour correctly</strong> - too much flour develops excess gluten that weighs down structure.<br>3. <strong>Don\'t overmix</strong> - develops too much gluten in batters, creating a dense texture instead of light crumb.';
+                break;
+            case 'sauce-break':
+                solution = 'Your emulsion has separated. Chemistry-based fixes:<br><br>1. <strong>For dairy sauces</strong>: Temper by slowly adding hot liquid to dairy to prevent protein coagulation.<br>2. <strong>For oil-based emulsions</strong>: Add oil slowly while whisking vigorously to create stable bonds between water and fat molecules.<br>3. <strong>Add an emulsifier</strong>: Mustard, egg yolk, or honey can help stabilize the mixture.';
+                break;
+            case 'no-browning':
+                solution = 'Your food isn\'t undergoing Maillard reactions. Solutions:<br><br>1. <strong>Pat food dry</strong> - surface moisture prevents proper browning by cooling the surface.<br>2. <strong>Don\'t overcrowd the pan</strong> - creates steam that lowers temperature.<br>3. <strong>Check heat level</strong> - Maillard reactions need temps above 285°F.<br>4. <strong>Try a pinch of baking soda</strong> - raises pH to accelerate browning reactions.';
+                break;
+            case 'dough-sticky':
+                solution = 'Your dough is too sticky. Chemistry solutions:<br><br>1. <strong>Add flour gradually</strong> - humidity affects flour absorption, so adjust as needed.<br>2. <strong>Chill the dough</strong> - cold temperatures firm up fats and reduce stickiness.<br>3. <strong>Use oil instead of flour</strong> for handling - prevents adding too much extra flour which can make dough tough.';
+                break;
+            case 'souffle-fall':
+                solution = 'Your soufflé collapsed. Chemistry solutions:<br><br>1. <strong>Don\'t open the oven</strong> - sudden temperature changes cause collapse.<br>2. <strong>Ensure proper egg white foam</strong> - whip to stiff peaks with no yolk contamination.<br>3. <strong>Use correct dish size</strong> - soufflés need room to climb the sides for support.';
+                break;
+            case 'crystal-sugar':
+                solution = 'You have sugar crystallization. Chemistry solutions:<br><br>1. <strong>Wash down sides of pan</strong> with wet brush to dissolve stray crystals.<br>2. <strong>Add acid</strong> (cream of tartar or lemon juice) to inhibit crystal formation.<br>3. <strong>Don\'t stir once boiling</strong> - agitation promotes crystallization.';
+                break;
+            case 'greasy-food':
+                solution = 'Your food is too greasy. Chemistry solutions:<br><br>1. <strong>Use proper oil temperature</strong> - too cool and food absorbs oil, too hot and oil breaks down.<br>2. <strong>Drain on wire rack</strong> - lets oil drip off instead of pooling.<br>3. <strong>Blot with paper towels</strong> - absorbs surface grease immediately after cooking.';
+                break;
+            case 'overcooked':
+                solution = 'You keep overcooking food. Chemistry solutions:<br><br>1. <strong>Use a thermometer</strong> - proteins denature at specific temperatures.<br>2. <strong>Account for carryover cooking</strong> - food continues to cook after removal from heat.<br>3. <strong>Try reverse searing</strong> - low oven first, then quick sear for perfect doneness.';
+                break;
+            case 'underseasoned':
+                solution = 'Your food is underseasoned. Chemistry solutions:<br><br>1. <strong>Season in layers</strong> - add salt throughout cooking process.<br>2. <strong>Use acid to brighten</strong> - lemon juice or vinegar enhances other flavors.<br>3. <strong>Consider umami boosters</strong> - soy sauce, mushrooms, or Parmesan add depth.';
+                break;
+            case 'tough-adobo':
+                solution = 'Your adobo meat is tough or dry. Chemistry solutions:<br><br>1. <strong>Acid timing matters</strong> - vinegar causes proteins to tighten; add after meat has simmered in soy for 30 minutes for more tender results.<br>2. <strong>Low, slow cooking</strong> - allows collagen to convert to gelatin at 160-180°F.<br>3. <strong>Don\'t boil vigorously</strong> - high heat toughens proteins; gentle simmer is better.<br>4. <strong>Rest meat in sauce</strong> - cooling in liquid allows reabsorption.';
+                break;
+            case 'bland-pancit':
+                solution = 'Your pancit lacks flavor depth. Chemistry solutions:<br><br>1. <strong>Toast noodles briefly</strong> - creates Maillard reaction compounds for deeper flavor.<br>2. <strong>Deglaze the pan</strong> - use calamansi juice or broth to dissolve browned bits (fond) containing flavor compounds.<br>3. <strong>Layer umami ingredients</strong> - combination of dried shrimp, mushroom, patis (fish sauce) creates glutamate synergy.<br>4. <strong>Finish with acid</strong> - calamansi brightens flavors by activating taste receptors.';
+                break;
+            case 'lumpia-issues':
+                solution = 'Your lumpia wrappers tear or become soggy. Chemistry solutions:<br><br>1. <strong>Control filling moisture</strong> - pre-cook and cool filling to remove excess water that creates steam.<br>2. <strong>Add binder to filling</strong> - egg or cornstarch binds free water molecules.<br>3. <strong>Proper wrapper handling</strong> - keep under damp cloth to prevent drying which causes cracking.<br>4. <strong>Oil temperature control</strong> - must be 350-375°F for quick cooking that creates crisp exterior before moisture migrates outward.';
+                break;
+            case 'lechon-not-crispy':
+                solution = 'Your lechon kawali skin isn\'t crispy. Chemistry solutions:<br><br>1. <strong>Dry skin thoroughly</strong> - moisture prevents proper crackling formation.<br>2. <strong>Vinegar rub</strong> - acid denatures surface proteins for better crisping.<br>3. <strong>Salt the skin</strong> - draws out moisture through osmosis and helps create protein structure.<br>4. <strong>Two-stage cooking</strong> - first boil to render fat and gelatinize collagen, then high-heat frying for Maillard reactions and crisping.';
+                break;
+            case 'sinigang-balance':
+                solution = 'Your sinigang is too sour or not sour enough. Chemistry solutions:<br><br>1. <strong>Add souring agent gradually</strong> - acid concentration is difficult to reduce once added.<br>2. <strong>Counter excessive sourness</strong> with small amounts of coconut milk (fat molecules coat taste receptors).<br>3. <strong>Balance with 1/4 tsp sugar</strong> - not to sweeten but to balance flavor perception.<br>4. <strong>Add vegetables strategically</strong> - certain vegetables like tomatoes add their own acids and affect overall pH.';
+                break;
+            case 'bitter-ampalaya':
+                solution = 'Your ampalaya (bitter melon) is too bitter. Chemistry solutions:<br><br>1. <strong>Salt treatment</strong> - sprinkle generously with salt and let sit 15 minutes; salt draws out bitter compounds through osmosis.<br>2. <strong>Rinse thoroughly</strong> - removes surface cucurbitacins (bitter compounds).<br>3. <strong>Quick blanching</strong> - brief boiling deactivates some bitter enzymes.<br>4. <strong>Balance with umami</strong> - pair with fermented black beans, dried fish, or eggs, which contain glutamates that mask bitterness.';
+                break;
+            case 'gummy-kakanin':
+                solution = 'Your kakanin/rice cakes are gummy or too dense. Chemistry solutions:<br><br>1. <strong>Proper rice flour hydration</strong> - glutinous rice requires precise liquid ratio for proper gelatinization.<br>2. <strong>Rest your batter</strong> - allows even hydration of starch molecules.<br>3. <strong>Steam at consistent temperature</strong> - fluctuations cause uneven starch gelatinization.<br>4. <strong>Cool properly</strong> - cooling rate affects retrogradation (re-alignment) of starch molecules; cover while cooling for best texture.';
+                break;
+            case 'oily-karekare':
+                solution = 'Your kare-kare is too oily. Chemistry solutions:<br><br>1. <strong>Skim fat during cooking</strong> - animal fat separates when simmered slowly.<br>2. <strong>Toast ground rice</strong> - properly toasted ground rice absorbs excess oil and forms stable suspension.<br>3. <strong>Add peanut butter gradually</strong> - allows proper emulsion formation between fat and water.<br>4. <strong>Refrigerate then remove hardened fat</strong> - works well if preparing ahead, as saturated fats solidify when cold.';
+                break;
+            case 'adobo-balance':
+                solution = 'Your adobo is too salty or sour. Chemistry solutions:<br><br>1. <strong>For too salty</strong> - Add potatoes to absorb excess salt, or dilute with water and simmer longer.<br>2. <strong>For too sour</strong> - Balance with a small amount of sugar or coconut milk to counteract acidity.<br>3. <strong>Proper ratio</strong> - Standard is 1:1:1 (soy sauce:vinegar:water) for balanced flavor.<br>4. <strong>Simmer uncovered</strong> - Allows some vinegar to evaporate if too sour.';
+                break;
+            case 'kare-kare':
+                solution = 'Your kare-kare sauce is separating. Chemistry solutions:<br><br>1. <strong>Proper emulsion</strong> - Blend peanut butter with warm stock before adding to create stable mixture.<br>2. <strong>Toast rice flour</strong> - Enhances thickening power and prevents separation.<br>3. <strong>Low heat</strong> - High heat breaks emulsions; simmer gently.<br>4. <strong>Stir constantly</strong> - Especially when adding peanut butter to prevent clumping.';
+                break;
+            case 'soggy-lumpia':
+                solution = 'Your lumpia isn\'t crispy. Chemistry solutions:<br><br>1. <strong>Dry filling</strong> - Cook and cool filling completely to remove excess moisture.<br>2. <strong>Proper wrapping</strong> - Don\'t overfill; leave space for steam to escape.<br>3. <strong>Oil temperature</strong> - Maintain 350-375°F; too low causes oil absorption.<br>4. <strong>Double fry</strong> - First at lower temp to cook through, then high temp to crisp.';
+                break;
+            case 'rice-texture':
+                solution = 'Your rice is sticky or undercooked. Chemistry solutions:<br><br>1. <strong>Proper water ratio</strong> - Filipino rice typically needs 1:1 or 1:1.25 (rice:water) ratio.<br>2. <strong>Rinse thoroughly</strong> - Removes excess starch that causes stickiness.<br>3. <strong>Rest after cooking</strong> - Allows moisture to distribute evenly.<br>4. <strong>Don\'t peek</strong> - Keeping lid on maintains proper steam and temperature.';
+                break;
+            case 'lechon-skin':
+                solution = 'Your lechon kawali skin isn\'t crispy. Chemistry solutions:<br><br>1. <strong>Dry thoroughly</strong> - Pat skin dry and air-dry in fridge for several hours.<br>2. <strong>Prick skin</strong> - Allows fat to render out during cooking.<br>3. <strong>Two-stage cooking</strong> - Simmer first to tenderize, then high-heat fry to crisp.<br>4. <strong>Final blast</strong> - Increase heat at end to puff up skin.';
+                break;
+            case 'pancit-clumps':
+                solution = 'Your pancit is clumping together. Chemistry solutions:<br><br>1. <strong>Proper soaking</strong> - Don\'t oversoak noodles; they should still be slightly firm.<br>2. <strong>Oil the noodles</strong> - Toss with small amount of oil after draining.<br>3. <strong>High heat</strong> - Cook in batches if needed to prevent steaming.<br>4. <strong>Add liquid gradually</strong> - Allows even absorption without sticking.';
+                break;
+            case 'leche-flan':
+                solution = 'Your leche flan has bubbles or isn\'t smooth. Chemistry solutions:<br><br>1. <strong>Strain mixture</strong> - Removes air bubbles and ensures smooth texture.<br>2. <strong>Water bath</strong> - Bake in bain-marie for gentle, even heat.<br>3. <strong>Don\'t overmix</strong> - Excessive mixing incorporates too much air.<br>4. <strong>Low temperature</strong> - Bake at 325°F to prevent curdling.';
+                break;
+            case 'sinigang-sour':
+                solution = 'Your sinigang isn\'t sour enough. Chemistry solutions:<br><br>1. <strong>Use tamarind paste</strong> - More concentrated than fresh fruit.<br>2. <strong>Add souring agent late</strong> - Some acidity cooks out with prolonged simmering.<br>3. <strong>Balance with salt</strong> - Enhances perception of sourness.<br>4. <strong>Try kamias</strong> - More potent souring agent than tamarind.';
+                break;
+            case 'flat-bibingka':
+                solution = 'Your bibingka isn\'t rising properly. Chemistry solutions:<br><br>1. <strong>Fresh baking powder</strong> - Old leaveners lose potency.<br>2. <strong>Proper batter consistency</strong> - Too thick prevents rising.<br>3. <strong>Preheat properly</strong> - Needs initial high heat for lift.<br>4. <strong>Don\'t overmix</strong> - Develops gluten which makes it dense.';
+                break;
+            case 'runny-ube':
+                solution = 'Your ube halaya is too runny. Chemistry solutions:<br><br>1. <strong>Cook longer</strong> - Evaporates excess liquid and concentrates flavor.<br>2. <strong>Add binder</strong> - Small amount of cornstarch or flour helps thicken.<br>3. <strong>Proper ube ratio</strong> - Use more ube relative to liquid ingredients.<br>4. <strong>Cool completely</strong> - Sets further as it cools.';
+                break;
+            case 'other':
+                const customProblem = document.getElementById('custom-problem').value;
+                if (customProblem.trim() === '') {
+                    solution = 'Please describe your cooking problem for a chemistry-based solution.';
+                } else {
+                    solution = `Based on your description (${customProblem}), here are general chemistry principles to consider:<br><br>1. <strong>Temperature control</strong> - many cooking problems stem from incorrect heat application.<br>2. <strong>Ingredient ratios</strong> - chemical interactions depend on proper proportions.<br>3. <strong>Timing</strong> - chemical reactions need appropriate duration.<br>4. <strong>Acid/base balance</strong> - pH affects texture and flavor development <br><br><strong> You may find other resources online for your specific problem.`; 
+                }
+                break;
+            default:
+                solution = 'Please select a cooking problem to get a chemistry-based solution.';
+        }
+        
+        solutionText.innerHTML = solution;
+        solutionDiv.style.display = 'block';
+        
+        // Scroll to solution
+        solutionDiv.scrollIntoView({ behavior: 'smooth' });
+    });
+    
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            document.querySelector(this.getAttribute('href')).scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+    });
+</script>
